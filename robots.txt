@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://josedaminato.github.io/chacocoach/sitemap.xml
