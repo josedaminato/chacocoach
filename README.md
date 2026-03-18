@@ -6,7 +6,7 @@ Para lanzar una web nueva basta con ejecutar `npm run setup` o editar `lib/confi
 
 ## Ver la web (GitHub Pages)
 
-La web se despliega automáticamente en **https://josedaminato.github.io/chacocoach** al hacer push a `master`. Para activarlo: Settings → Pages → Source: **GitHub Actions**.
+La web se despliega automáticamente en **https://josedaminato.github.io/chacocoach** al hacer push a `master`. Para activarlo: Settings → Pages → Source: **Deploy from a branch** → Branch: **gh-pages** → Folder: **/ (root)**.
 
 ## Stack
 
