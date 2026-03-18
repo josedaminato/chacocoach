@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
+const isGhPages = process.env.GH_PAGES_BUILD === "1";
+
 const nextConfig = {
+  ...(isGhPages && {
+    output: "export",
+    basePath: "/chacocoach",
+    assetPrefix: "/chacocoach/",
+  }),
   images: {
     remotePatterns: [
       {

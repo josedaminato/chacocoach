@@ -4,6 +4,10 @@ Template web reutilizable para personal trainers que usan Harbiz. Presencia prof
 
 Para lanzar una web nueva basta con ejecutar `npm run setup` o editar `lib/config.ts` y conectar un proyecto Sanity.
 
+## Ver la web (GitHub Pages)
+
+La web se despliega automáticamente en **https://josedaminato.github.io/chacocoach** al hacer push a `master`. Para activarlo: Settings → Pages → Source: **GitHub Actions**.
+
 ## Stack
 
 - **Next.js 14** (App Router)

@@ -1,5 +1,9 @@
 import { trainerConfig } from "@/lib/getConfig";
 
+export function generateStaticParams() {
+  return [{ tool: [] }];
+}
+
 export const metadata = {
   title: "Studio",
   robots: "noindex" as const,
