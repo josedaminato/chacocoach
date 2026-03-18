@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --color-primary: #e8ff00;
+  --color-secondary: #0a0a0a;
+  --color-accent: #ff4500;
+  --color-text: #ffffff;
+  --font-display: var(--font-bebas), sans-serif;
+  --font-body: var(--font-dm), sans-serif;
+  --radius: 0.5rem;
+  --transition: 0.3s ease;
+
+  /* Aliases para compatibilidad */
+  --primary: var(--color-primary);
+  --secondary: var(--color-secondary);
+  --accent: var(--color-accent);
+  --text: var(--color-text);
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-body);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
