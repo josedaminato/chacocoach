@@ -26,6 +26,7 @@ jobs:
         env:
           GH_PAGES_BUILD: "1"
           NEXT_PUBLIC_SITE_URL: "https://josedaminato.github.io/chacocoach"
+          NODE_OPTIONS: "--max-old-space-size=4096"
         run: npm run build
 
       - name: Deploy to gh-pages branch

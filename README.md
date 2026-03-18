@@ -4,9 +4,11 @@ Template web reutilizable para personal trainers que usan Harbiz. Presencia prof
 
 Para lanzar una web nueva basta con ejecutar `npm run setup` o editar `lib/config.ts` y conectar un proyecto Sanity.
 
-## Ver la web (GitHub Pages)
+## Ver la web (para compartir con el cliente)
 
-La web se despliega automáticamente en **https://josedaminato.github.io/chacocoach** al hacer push a `master`. Para activarlo: Settings → Pages → Source: **Deploy from a branch** → Branch: **gh-pages** → Folder: **/ (root)**.
+**Opción rápida (recomendada):** Conectá el repo a [Vercel](https://vercel.com) → Import → Deploy. En 2 minutos tenés un link como `chacocoach.vercel.app` para compartir.
+
+**GitHub Pages:** Settings → Pages → Source: **Deploy from a branch** → Branch: **gh-pages** → Folder: **/ (root)**. La web se actualiza en cada push a `master`.
 
 ## Stack
 
