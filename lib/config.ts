@@ -28,7 +28,7 @@ export const defaultConfig = {
   heroDescription:
     "Planes de entrenamiento adaptados a tu objetivo, experiencia y disponibilidad. Seguimiento profesional y acompañamiento constante.",
   heroMedia:
-    "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1920&q=80",
+    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80",
 
   presentationVideoUrl: "" as string,
   presentationVideoCaption:
