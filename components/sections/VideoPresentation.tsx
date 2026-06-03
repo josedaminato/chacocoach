@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { trainerConfig } from "@/lib/getConfig";
+import { assetUrl } from "@/lib/assetUrl";
 
 export function VideoPresentation() {
   const videoUrl = trainerConfig.presentationVideoUrl;
@@ -45,7 +46,7 @@ export function VideoPresentation() {
                 controls
                 playsInline
                 className="w-full h-full object-cover"
-                poster={trainerConfig.heroMedia}
+                poster={assetUrl(trainerConfig.heroMedia)}
               >
                 <track kind="captions" />
               </video>

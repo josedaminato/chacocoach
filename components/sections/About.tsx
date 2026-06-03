@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
+import { assetUrl } from "@/lib/assetUrl";
 
 interface Trainer {
   name?: string;
@@ -41,7 +42,8 @@ export function About({ trainer }: AboutProps) {
           >
             {trainer.photo ? (
               <Image
-                src={trainer.photo}
+                src={assetUrl(trainer.photo)}
+                unoptimized={!trainer.photo.startsWith("http")}
                 alt={trainer.name ? `Foto de ${trainer.name}` : "Entrenador"}
                 fill
                 className="object-cover"

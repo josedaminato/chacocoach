@@ -27,8 +27,8 @@ export const defaultConfig = {
     "Entrenamiento online personalizado para lograr resultados reales.",
   heroDescription:
     "Planes de entrenamiento adaptados a tu objetivo, experiencia y disponibilidad. Seguimiento profesional y acompañamiento constante.",
-  heroMedia:
-    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80",
+  /** Imagen local en public/hero.jpg (gimnasio / pesas) — evita caché de URLs externas */
+  heroMedia: "/hero.jpg",
 
   presentationVideoUrl: "" as string,
   presentationVideoCaption:

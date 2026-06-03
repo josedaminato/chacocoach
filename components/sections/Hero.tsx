@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { trainerConfig } from "@/lib/getConfig";
+import { assetUrl } from "@/lib/assetUrl";
 import { trackEvent } from "@/lib/analytics";
 
 const fadeUp = {
@@ -18,7 +19,7 @@ const fadeUp = {
 
 export function Hero() {
   const [imgError, setImgError] = useState(false);
-  const mediaSrc = trainerConfig.heroMedia;
+  const mediaSrc = assetUrl(trainerConfig.heroMedia);
 
   return (
     <section
@@ -35,7 +36,9 @@ export function Hero() {
               className="object-cover object-top md:object-center"
               priority
               sizes="100vw"
-              unoptimized={mediaSrc.startsWith("http")}
+              unoptimized={
+                mediaSrc.startsWith("http") || mediaSrc.startsWith("/")
+              }
               onError={() => setImgError(true)}
             />
           ) : null}

@@ -20,7 +20,7 @@ export const mockTrainer: Trainer = {
       markDefs: [],
     },
   ],
-  photo: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800",
+  photo: "/hero-coach.jpg",
   experiences: [
     "Coach de entrenamiento online",
     "Instructor de musculación",
