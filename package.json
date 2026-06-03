@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:gh": "cross-env GH_PAGES_BUILD=1 NEXT_PUBLIC_SITE_URL=https://josedaminato.github.io/chacocoach next build",
+    "deploy": "npm run build:gh && gh-pages -d out --nojekyll",
     "start": "next start",
     "lint": "next lint",
     "studio": "sanity dev",
@@ -31,6 +33,8 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
+    "gh-pages": "^6.1.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

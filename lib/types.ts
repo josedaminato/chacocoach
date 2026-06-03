@@ -1,7 +1,9 @@
 export interface Trainer {
   name?: string;
+  title?: string;
   bio?: unknown; // PortableText
   photo?: string;
+  experiences?: string[];
   metrics?: {
     clients?: number;
     years?: number;
@@ -13,10 +15,12 @@ export interface Trainer {
 export interface Plan {
   _id: string;
   name: string;
+  description?: string;
   price?: number;
   billingPeriod?: string;
   features?: string[];
   harbizUrl?: string;
+  whatsappKey?: "plan2x" | "plan3x" | "plan4x";
   isFeatured?: boolean;
   isActive?: boolean;
   quizScore?: number;

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,97 +8,99 @@ import { trainerConfig } from "@/lib/getConfig";
 import { trackEvent } from "@/lib/analytics";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 1, y: 0 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" as const, delay: i * 0.15 },
+    transition: { duration: 0.6, ease: "easeOut" as const, delay: i * 0.12 },
   }),
 };
 
 export function Hero() {
-  const mediaSrc = trainerConfig.heroMedia?.startsWith("http")
-    ? trainerConfig.heroMedia
-    : trainerConfig.heroMedia;
+  const [imgError, setImgError] = useState(false);
+  const mediaSrc = trainerConfig.heroMedia;
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      aria-label="Bienvenida"
+      className="relative min-h-[100dvh] flex items-end md:items-center overflow-hidden"
+      aria-label="Portada"
     >
       {mediaSrc && (
-        <div className="absolute inset-0 z-0">
-          {mediaSrc.endsWith(".mp4") || mediaSrc.endsWith(".webm") ? (
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
-              aria-hidden
-            >
-              <source src={mediaSrc} type="video/mp4" />
-            </video>
-          ) : (
+        <div className="absolute inset-0 z-0 bg-[var(--secondary)]">
+          {!imgError ? (
             <Image
               src={mediaSrc}
               alt=""
               fill
-              className="object-cover"
+              className="object-cover object-top md:object-center"
               priority
               sizes="100vw"
+              unoptimized={mediaSrc.startsWith("http")}
+              onError={() => setImgError(true)}
             />
-          )}
-          <div className="absolute inset-0 bg-[var(--secondary)]/80" />
+          ) : null}
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--secondary)] via-[var(--secondary)]/70 to-[var(--secondary)]/40" />
         </div>
       )}
       {!mediaSrc && (
         <div className="absolute inset-0 bg-[var(--secondary)]" />
       )}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
-        <motion.h1
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0}
-          className="font-display text-6xl sm:text-7xl md:text-8xl text-white mb-6"
-        >
-          {trainerConfig.heroHeadline}
-        </motion.h1>
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={1}
-          className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-10"
-        >
-          {trainerConfig.heroSubheadline}
-        </motion.p>
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={2}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <Link
-            href={trainerConfig.harbizUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackEvent("click_harbiz_cta", { location: "hero" })}
-            className="inline-flex items-center justify-center px-8 py-4 bg-[var(--primary)] text-[var(--secondary)] font-display font-bold text-lg uppercase hover:opacity-90 transition-opacity"
-            aria-label="Empezá hoy en Harbiz"
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 md:py-32">
+        <div className="max-w-2xl">
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={0}
+            className="text-[var(--primary)] font-display text-sm md:text-base tracking-widest uppercase mb-3"
           >
-            Empezá hoy
-          </Link>
-          <Link
-            href="/#planes"
-            className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-display font-bold text-lg uppercase hover:bg-white hover:text-[var(--secondary)] transition-all"
-            aria-label="Ver planes"
+            {trainerConfig.tagline}
+          </motion.p>
+          <motion.h1
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={1}
+            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white mb-4 leading-none"
           >
-            Ver planes
-          </Link>
-        </motion.div>
+            {trainerConfig.heroHeadline}
+          </motion.h1>
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={2}
+            className="text-lg md:text-xl text-white font-medium mb-3"
+          >
+            {trainerConfig.heroSubheadline}
+          </motion.p>
+          {"heroDescription" in trainerConfig && trainerConfig.heroDescription && (
+            <motion.p
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={3}
+              className="text-base md:text-lg text-white/85 mb-8 leading-relaxed"
+            >
+              {trainerConfig.heroDescription}
+            </motion.p>
+          )}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={4}
+          >
+            <Link
+              href="/#planes"
+              onClick={() => trackEvent("cta_click", { location: "hero", target: "planes" })}
+              className="inline-flex items-center justify-center w-full sm:w-auto px-10 py-4 bg-[var(--primary)] text-white font-display font-bold text-lg uppercase rounded-lg hover:opacity-90 transition-opacity shadow-lg"
+              aria-label="Quiero empezar - ver planes"
+            >
+              Quiero empezar
+            </Link>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

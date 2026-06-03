@@ -8,10 +8,12 @@ html {
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-  --color-primary: #e8ff00;
-  --color-secondary: #0a0a0a;
-  --color-accent: #ff4500;
+  --foreground: #0f172a;
+  --color-primary: #0ea5e9;
+  --color-secondary: #0f172a;
+  --color-accent: #0284c7;
+  --color-muted: #64748b;
+  --color-surface: #f1f5f9;
   --color-text: #ffffff;
   --font-display: var(--font-bebas), sans-serif;
   --font-body: var(--font-dm), sans-serif;

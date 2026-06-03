@@ -4,42 +4,44 @@
  * En desarrollo, se usa esta.
  */
 export const defaultConfig = {
-  // Info personal
-  name: "Juan Pérez",
-  tagline: "Entrenador Personal Online",
-  bio: "Entrenador certificado con más de 10 años de experiencia transformando vidas.",
-  email: "juan@example.com",
+  name: "Chaco Coach",
+  tagline: "Entrenamiento online personalizado",
+  bio: "Entrenador especializado en hipertrofia, recomposición corporal y preparación física.",
+  email: "contacto@chacocoach.com",
   phone: "+5492614000000",
   country: "Argentina",
 
-  // Site (para SEO, sitemap - configurar NEXT_PUBLIC_SITE_URL en .env)
-  siteUrl: "https://ejemplo.com",
+  siteUrl: "https://chacocoach.com",
 
-  // Harbiz
-  harbizUrl: "https://app.harbiz.com/juanperez",
+  harbizUrl: "",
 
-  // Redes sociales
-  instagram: "https://instagram.com/juanperez.fit",
-  instagramEmbedUrl: "", // URL del widget embed de IG (opcional)
+  instagram: "https://www.instagram.com/coachchaco",
+  instagramHandle: "@coachchaco",
+  instagramEmbedUrl: "",
   youtube: "",
   tiktok: "",
   whatsapp: "https://wa.me/5492614000000",
 
-  // Hero
-  heroHeadline: "Transformá tu cuerpo. Cambiá tu vida.",
+  heroHeadline: "CHACO COACH",
   heroSubheadline:
-    "Entrenamiento online personalizado para alcanzar tus objetivos. Sin excusas, con resultados.",
-  heroMedia: "/hero.jpg", // imagen o video local o URL
+    "Entrenamiento online personalizado para lograr resultados reales.",
+  heroDescription:
+    "Planes de entrenamiento adaptados a tu objetivo, experiencia y disponibilidad. Seguimiento profesional y acompañamiento constante.",
+  heroMedia:
+    "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1920&q=80",
 
-  // CTA Banner
+  presentationVideoUrl: "" as string,
+  presentationVideoCaption:
+    "Mi objetivo es ayudarte a construir un físico fuerte, saludable y sostenible, con una planificación adaptada a tu realidad y a tus objetivos.",
+
   ctaHeadline: "¿Listo para empezar?",
-  ctaSubheadline: "Los cupos son limitados.",
+  ctaSubheadline:
+    "Elegí tu plan online o escribime por WhatsApp para recibir más información.",
 
-  // Tema visual
   theme: {
-    primary: "#E8FF00",
-    secondary: "#0A0A0A",
-    accent: "#FF4500",
+    primary: "#0EA5E9",
+    secondary: "#0F172A",
+    accent: "#0284C7",
     text: "#FFFFFF",
     fontDisplay: "Bebas Neue",
     fontBody: "DM Sans",

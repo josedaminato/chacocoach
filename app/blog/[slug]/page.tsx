@@ -8,11 +8,11 @@ import { BlogPostViewTracker } from "@/components/BlogPostViewTracker";
 import { HarbizCTA } from "@/components/HarbizCTA";
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug } = params;
   const post = await getPostBySlug(slug);
   if (!post) return { title: "Post no encontrado" };
   return {
@@ -34,7 +34,7 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { slug } = params;
   const post = await getPostBySlug(slug);
 
   if (!post) notFound();

@@ -3,10 +3,9 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { trainerConfig } from "@/lib/getConfig";
+import { getWhatsAppHref } from "@/lib/whatsapp";
+import { WHATSAPP_MESSAGES } from "@/lib/landing";
 import { trackEvent } from "@/lib/analytics";
-
-const WHATSAPP_MSG =
-  "Hola, vi tu web y me interesa saber más sobre tus planes";
 
 export function WhatsAppButton() {
   const [visible, setVisible] = useState(false);
@@ -18,9 +17,7 @@ export function WhatsAppButton() {
 
   if (!trainerConfig.whatsapp) return null;
 
-  const href = trainerConfig.whatsapp.includes("?")
-    ? `${trainerConfig.whatsapp}&text=${encodeURIComponent(WHATSAPP_MSG)}`
-    : `${trainerConfig.whatsapp}?text=${encodeURIComponent(WHATSAPP_MSG)}`;
+  const href = getWhatsAppHref(WHATSAPP_MESSAGES.general);
 
   return (
     <motion.a

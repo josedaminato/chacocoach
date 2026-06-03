@@ -25,7 +25,7 @@ function main() {
   const answers = {};
 
   Promise.resolve()
-    .then(() => ask(rl, "Nombre del trainer", "Juan Pérez"))
+    .then(() => ask(rl, "Nombre del trainer", "Chaco Coach"))
     .then((name) => {
       answers.name = name;
       return ask(rl, "Email", "juan@example.com");

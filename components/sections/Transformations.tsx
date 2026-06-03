@@ -27,86 +27,96 @@ export function Transformations({ transformations }: TransformationsProps) {
 
   const slides = transformations.flatMap((t) => {
     const imgs: { src: string; alt: string }[] = [];
-    if (t.beforePhoto) imgs.push({ src: t.beforePhoto, alt: `Antes - ${t.clientName || "Cliente"}` });
-    if (t.afterPhoto) imgs.push({ src: t.afterPhoto, alt: `Después - ${t.clientName || "Cliente"}` });
+    if (t.beforePhoto)
+      imgs.push({ src: t.beforePhoto, alt: `Antes - ${t.clientName || "Cliente"}` });
+    if (t.afterPhoto)
+      imgs.push({ src: t.afterPhoto, alt: `Después - ${t.clientName || "Cliente"}` });
     return imgs;
   });
 
   return (
     <section
       id="transformaciones"
-      className="py-20 md:py-28 bg-[var(--secondary)] text-white"
+      className="py-20 md:py-28 bg-white text-[var(--secondary)]"
       aria-labelledby="transformaciones-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
           id="transformaciones-heading"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="font-display text-4xl md:text-6xl text-center mb-16"
+          className="font-display text-3xl md:text-5xl text-center mb-4"
         >
-          Transformaciones
+          Casos de éxito
         </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center text-[var(--color-muted)] mb-14"
+        >
+          Resultados reales de alumnos que confiaron en el proceso.
+        </motion.p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {transformations.map((t, i) => (
             <motion.article
               key={t._id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.1 }}
-              className="rounded-2xl overflow-hidden border border-white/10 cursor-pointer"
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ delay: i * 0.08 }}
+              className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow"
               onClick={() => {
                 const idx = transformations
                   .slice(0, i)
-                  .reduce((acc, x) => acc + (x.beforePhoto ? 1 : 0) + (x.afterPhoto ? 1 : 0), 0);
+                  .reduce(
+                    (acc, x) =>
+                      acc + (x.beforePhoto ? 1 : 0) + (x.afterPhoto ? 1 : 0),
+                    0
+                  );
                 setLightboxIndex(idx);
                 setLightboxOpen(true);
               }}
             >
               <div className="grid grid-cols-2 gap-0">
                 {t.beforePhoto && (
-                  <div className="relative aspect-square">
+                  <div className="relative aspect-square bg-slate-100">
                     <Image
                       src={t.beforePhoto}
                       alt={`Antes - ${t.clientName || "Cliente"}`}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 768px) 50vw, 33vw"
+                      sizes="(max-width: 768px) 50vw, 20vw"
                       quality={85}
                     />
-                    <span className="absolute bottom-2 left-2 text-xs bg-black/60 px-2 py-1 rounded">
+                    <span className="absolute bottom-2 left-2 text-xs bg-[var(--secondary)]/80 text-white px-2 py-1 rounded">
                       Antes
                     </span>
                   </div>
                 )}
                 {t.afterPhoto && (
-                  <div className="relative aspect-square">
+                  <div className="relative aspect-square bg-slate-100">
                     <Image
                       src={t.afterPhoto}
                       alt={`Después - ${t.clientName || "Cliente"}`}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 768px) 50vw, 33vw"
+                      sizes="(max-width: 768px) 50vw, 20vw"
                       quality={85}
                     />
-                    <span className="absolute bottom-2 left-2 text-xs bg-black/60 px-2 py-1 rounded">
+                    <span className="absolute bottom-2 left-2 text-xs bg-[var(--primary)] text-white px-2 py-1 rounded">
                       Después
                     </span>
                   </div>
                 )}
               </div>
-              <div className="p-4 bg-white/5">
+              <div className="p-4 bg-[var(--color-surface)]">
                 {t.clientName && (
-                  <p className="font-display text-lg">{t.clientName}</p>
+                  <p className="font-display text-xl">{t.clientName}</p>
                 )}
                 {t.duration && (
-                  <p className="text-sm text-white/70">{t.duration}</p>
-                )}
-                {t.discipline && (
-                  <p className="text-sm text-[var(--primary)]">{t.discipline}</p>
+                  <p className="text-sm text-[var(--color-muted)]">{t.duration}</p>
                 )}
               </div>
             </motion.article>

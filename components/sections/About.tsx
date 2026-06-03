@@ -6,14 +6,11 @@ import { PortableText } from "@portabletext/react";
 
 interface Trainer {
   name?: string;
+  title?: string;
   bio?: unknown;
   photo?: string;
+  experiences?: string[];
   certifications?: { title: string; icon?: string }[];
-  metrics?: {
-    clients?: number;
-    years?: number;
-    countries?: number;
-  };
 }
 
 interface AboutProps {
@@ -23,11 +20,10 @@ interface AboutProps {
 export function About({ trainer }: AboutProps) {
   if (!trainer) return null;
 
-  const metrics = [
-    { value: trainer.metrics?.years ?? 0, label: "Años de experiencia" },
-    { value: trainer.metrics?.clients ?? 0, label: "Clientes transformados" },
-    { value: trainer.metrics?.countries ?? 0, label: "Países" },
-  ];
+  const experiences =
+    trainer.experiences?.length
+      ? trainer.experiences
+      : trainer.certifications?.map((c) => c.title) ?? [];
 
   return (
     <section
@@ -36,20 +32,20 @@ export function About({ trainer }: AboutProps) {
       aria-labelledby="about-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative aspect-[4/5] rounded-2xl overflow-hidden"
+            className="relative aspect-[4/5] max-w-md mx-auto md:max-w-none rounded-2xl overflow-hidden ring-2 ring-[var(--primary)]/30"
           >
             {trainer.photo ? (
               <Image
                 src={trainer.photo}
-                alt={trainer.name || "Trainer"}
+                alt={trainer.name ? `Foto de ${trainer.name}` : "Entrenador"}
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 768px) 90vw, 50vw"
               />
             ) : (
               <div className="w-full h-full bg-white/10 flex items-center justify-center">
@@ -60,77 +56,60 @@ export function About({ trainer }: AboutProps) {
           <div>
             <motion.h2
               id="about-heading"
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="font-display text-4xl md:text-6xl mb-6"
+              className="font-display text-3xl md:text-5xl mb-2"
             >
               Sobre mí
             </motion.h2>
-            {Array.isArray(trainer.bio) ? (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
+            {trainer.title && (
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="prose prose-invert prose-lg mb-8 [&_p]:text-white/90 [&_p]:leading-relaxed"
+                className="text-[var(--primary)] font-medium mb-6"
+              >
+                {trainer.title}
+              </motion.p>
+            )}
+            {Array.isArray(trainer.bio) ? (
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.08 }}
+                className="prose prose-invert max-w-none mb-8 [&_p]:text-white/90 [&_p]:leading-relaxed [&_p]:text-base md:[&_p]:text-lg"
               >
                 <PortableText value={trainer.bio} />
               </motion.div>
             ) : null}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="grid grid-cols-3 gap-6 mb-8"
-            >
-              {metrics.map((m) => (
-                <div key={m.label} className="text-center">
-                  <span className="block font-display text-4xl md:text-5xl text-[var(--primary)]">
-                    {m.value}+
-                  </span>
-                  <span className="text-sm text-white/70">{m.label}</span>
-                </div>
-              ))}
-            </motion.div>
-            {trainer.certifications && trainer.certifications.length > 0 && (
+            {experiences.length > 0 && (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.12 }}
               >
-                <h4 className="font-display text-sm uppercase tracking-wider mb-3">
-                  Certificaciones
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {trainer.certifications.map((cert) => (
-                    <span
-                      key={cert.title}
-                      className="px-3 py-1 rounded-full bg-white/10 text-sm flex items-center gap-2"
+                <h3 className="font-display text-sm uppercase tracking-wider text-white/70 mb-4">
+                  Experiencia
+                </h3>
+                <ul className="space-y-2">
+                  {experiences.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-3 text-white/90 text-sm md:text-base"
                     >
-                      {cert.icon && (
-                        <CertIcon name={cert.icon} className="w-4 h-4" />
-                      )}
-                      {cert.title}
-                    </span>
+                      <span className="text-[var(--primary)] mt-0.5 shrink-0">✓</span>
+                      <span>{item}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </motion.div>
             )}
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function CertIcon({ className }: { name: string; className?: string }) {
-  return (
-    <span className={className} aria-hidden>
-      ✓
-    </span>
   );
 }
