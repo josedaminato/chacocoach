@@ -67,9 +67,11 @@ export function Hero() {
             className="mb-5"
           >
             <BrandLogo
-              height={80}
+              src={trainerConfig.heroLogo}
+              height={120}
+              width={120}
               priority
-              className="rounded-lg ring-1 ring-white/20 shadow-xl w-auto max-w-[240px] sm:max-w-[260px]"
+              className="w-auto max-w-[140px] sm:max-w-[160px] drop-shadow-lg"
             />
             <h1 className="sr-only">{trainerConfig.heroHeadline}</h1>
           </motion.div>
