@@ -67,7 +67,6 @@ export function Hero() {
             className="mb-5"
           >
             <BrandLogo
-              src={trainerConfig.heroLogo}
               height={130}
               width={240}
               priority

@@ -2,6 +2,8 @@ import Image from "next/image";
 import { assetUrl } from "@/lib/assetUrl";
 import { trainerConfig } from "@/lib/getConfig";
 
+const LOGO_ASPECT = 320 / 170;
+
 interface BrandLogoProps {
   className?: string;
   height?: number;
@@ -17,8 +19,8 @@ export function BrandLogo({
   priority = false,
   src,
 }: BrandLogoProps) {
-  const logoPath = src ?? trainerConfig.logo ?? "/logo.png";
-  const imageWidth = width ?? Math.round(height * 1.15);
+  const logoPath = src ?? trainerConfig.logo ?? "/hero-logo.png";
+  const imageWidth = width ?? Math.round(height * LOGO_ASPECT);
 
   return (
     <Image

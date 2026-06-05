@@ -22,9 +22,7 @@ export const defaultConfig = {
   tiktok: "",
   whatsapp: "https://wa.me/5492614000000",
 
-  logo: "/logo.png",
-  /** Logo sobre la foto del home (public/hero-logo.png) */
-  heroLogo: "/hero-logo.png",
+  logo: "/hero-logo.png",
 
   heroHeadline: "CHACO COACH",
   heroSubheadline:

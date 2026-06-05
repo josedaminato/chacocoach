@@ -37,8 +37,8 @@ export const metadata: Metadata = {
   },
   description: trainerConfig.heroSubheadline,
   icons: {
-    icon: `${basePath}/logo.png`,
-    apple: `${basePath}/logo.png`,
+    icon: `${basePath}/hero-logo.png`,
+    apple: `${basePath}/hero-logo.png`,
   },
   openGraph: {
     type: "website",

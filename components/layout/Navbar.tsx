@@ -39,10 +39,10 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-18">
           <Link
             href="/"
-            className="flex items-center shrink-0 rounded-md overflow-hidden ring-1 ring-white/10 hover:ring-[var(--primary)]/40 transition-shadow"
+            className="flex items-center shrink-0 transition-opacity hover:opacity-90"
             aria-label={`${trainerConfig.name} — Inicio`}
           >
-            <BrandLogo height={42} priority className="rounded-md" />
+            <BrandLogo height={42} priority />
           </Link>
           <ul className="hidden md:flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => (

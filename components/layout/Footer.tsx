@@ -43,10 +43,10 @@ export function Footer() {
         <div className="flex flex-col items-center text-center gap-8">
           <Link
             href="/"
-            className="inline-block rounded-md overflow-hidden ring-1 ring-white/10 hover:ring-[var(--primary)]/40 transition-shadow"
+            className="inline-block transition-opacity hover:opacity-90"
             aria-label={`${trainerConfig.name} — Inicio`}
           >
-            <BrandLogo height={56} className="rounded-md" />
+            <BrandLogo height={56} />
           </Link>
 
           <nav
