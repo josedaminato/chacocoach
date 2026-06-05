@@ -5,15 +5,7 @@ import { getMailtoHref } from "@/lib/email";
 import { WHATSAPP_MESSAGES } from "@/lib/landing";
 import { BrandLogo } from "@/components/layout/BrandLogo";
 
-import Link from "next/link";
-import { trainerConfig } from "@/lib/getConfig";
-import { getWhatsAppHref } from "@/lib/whatsapp";
-import { getMailtoHref } from "@/lib/email";
-import { WHATSAPP_MESSAGES } from "@/lib/landing";
-import { BrandLogo } from "@/components/layout/BrandLogo";
-
-type ContactItem = {
-  key: string;
+type ContactItem = {  key: string;
   href: string;
   label: string;
   external?: boolean;
