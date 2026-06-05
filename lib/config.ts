@@ -22,6 +22,8 @@ export const defaultConfig = {
   tiktok: "",
   whatsapp: "https://wa.me/5492614000000",
 
+  logo: "/logo.png",
+
   heroHeadline: "CHACO COACH",
   heroSubheadline:
     "Entrenamiento online personalizado para lograr resultados reales.",

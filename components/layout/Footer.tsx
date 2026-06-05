@@ -2,6 +2,7 @@ import Link from "next/link";
 import { trainerConfig } from "@/lib/getConfig";
 import { getWhatsAppHref } from "@/lib/whatsapp";
 import { WHATSAPP_MESSAGES } from "@/lib/landing";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 
 const socialLinks = [
   { href: trainerConfig.instagram, label: "Instagram", icon: "instagram" },
@@ -13,7 +14,13 @@ export function Footer() {
     <footer className="bg-[var(--secondary)] text-white py-10 md:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center gap-6">
-          <p className="font-display text-2xl">{trainerConfig.name}</p>
+          <Link
+            href="/"
+            className="inline-block rounded-md overflow-hidden ring-1 ring-white/10 hover:ring-[var(--primary)]/40 transition-shadow"
+            aria-label={`${trainerConfig.name} — Inicio`}
+          >
+            <BrandLogo height={56} className="rounded-md" />
+          </Link>
           <div className="flex flex-col items-center gap-3">
             <div className="flex gap-8">
               {socialLinks.map((s) => (

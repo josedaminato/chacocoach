@@ -8,6 +8,7 @@ import { trainerConfig } from "@/lib/getConfig";
 import { getWhatsAppHref } from "@/lib/whatsapp";
 import { WHATSAPP_MESSAGES } from "@/lib/landing";
 import { trackEvent } from "@/lib/analytics";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 
 const navLinks = [
   { href: "/#presentacion", label: "Presentación" },
@@ -15,7 +16,6 @@ const navLinks = [
   { href: "/#como-funciona", label: "Cómo funciona" },
   { href: "/#planes", label: "Planes" },
   { href: "/#transformaciones", label: "Resultados" },
-  { href: "/#calculadora-igc", label: "IGC" },
 ];
 
 export function Navbar() {
@@ -38,9 +38,10 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-18">
           <Link
             href="/"
-            className="font-display text-xl md:text-2xl text-white tracking-wide"
+            className="flex items-center shrink-0 rounded-md overflow-hidden ring-1 ring-white/10 hover:ring-[var(--primary)]/40 transition-shadow"
+            aria-label={`${trainerConfig.name} — Inicio`}
           >
-            {trainerConfig.name}
+            <BrandLogo height={42} priority className="rounded-md" />
           </Link>
           <ul className="hidden md:flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => (

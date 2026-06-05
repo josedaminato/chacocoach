@@ -7,6 +7,7 @@ import Link from "next/link";
 import { trainerConfig } from "@/lib/getConfig";
 import { assetUrl } from "@/lib/assetUrl";
 import { trackEvent } from "@/lib/analytics";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 
 const fadeUp = {
   hidden: { opacity: 1, y: 0 },
@@ -59,15 +60,20 @@ export function Hero() {
           >
             {trainerConfig.tagline}
           </motion.p>
-          <motion.h1
+          <motion.div
             variants={fadeUp}
             initial="hidden"
             animate="visible"
             custom={1}
-            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white mb-4 leading-none"
+            className="mb-5"
           >
-            {trainerConfig.heroHeadline}
-          </motion.h1>
+            <BrandLogo
+              height={88}
+              priority
+              className="rounded-lg ring-1 ring-white/15 shadow-lg max-w-[280px] w-full h-auto"
+            />
+            <h1 className="sr-only">{trainerConfig.heroHeadline}</h1>
+          </motion.div>
           <motion.p
             variants={fadeUp}
             initial="hidden"

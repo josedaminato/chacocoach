@@ -27,6 +27,8 @@ const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL) ||
   trainerConfig.siteUrl;
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -34,6 +36,10 @@ export const metadata: Metadata = {
     template: `%s | ${trainerConfig.name}`,
   },
   description: trainerConfig.heroSubheadline,
+  icons: {
+    icon: `${basePath}/logo.png`,
+    apple: `${basePath}/logo.png`,
+  },
   openGraph: {
     type: "website",
     locale: "es_AR",
