@@ -8,6 +8,8 @@ import { trainerConfig } from "@/lib/getConfig";
 import { assetUrl } from "@/lib/assetUrl";
 import { trackEvent } from "@/lib/analytics";
 import { BrandLogo } from "@/components/layout/BrandLogo";
+import { getWhatsAppHref } from "@/lib/whatsapp";
+import { WHATSAPP_MESSAGES } from "@/lib/landing";
 
 const fadeUp = {
   hidden: { opacity: 1, y: 0 },
@@ -21,6 +23,7 @@ const fadeUp = {
 export function Hero() {
   const [imgError, setImgError] = useState(false);
   const mediaSrc = assetUrl(trainerConfig.heroMedia);
+  const scheduleHref = getWhatsAppHref(WHATSAPP_MESSAGES.scheduleCall);
 
   return (
     <section
@@ -41,7 +44,6 @@ export function Hero() {
               onError={() => setImgError(true)}
             />
           ) : null}
-          {/* Oscurece la izquierda para el texto; en desktop deja ver al atleta a la derecha */}
           <div
             className="absolute inset-0 bg-gradient-to-r from-[var(--secondary)] from-0% via-[var(--secondary)]/88 via-45% to-[var(--secondary)]/15 to-100% md:via-[var(--secondary)]/72 md:via-38% md:to-transparent"
             aria-hidden
@@ -56,21 +58,12 @@ export function Hero() {
         <div className="absolute inset-0 bg-[var(--secondary)]" />
       )}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 md:py-32">
-        <div className="max-w-xl md:max-w-lg lg:max-w-xl">
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0}
-            className="text-[var(--primary)] font-display text-sm md:text-base tracking-widest uppercase mb-3 drop-shadow-sm"
-          >
-            {trainerConfig.tagline}
-          </motion.p>
+        <div className="max-w-xl md:max-w-md lg:max-w-xl">
           <motion.div
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={1}
+            custom={0}
             className="mb-5"
           >
             <BrandLogo
@@ -80,21 +73,21 @@ export function Hero() {
             />
             <h1 className="sr-only">{trainerConfig.heroHeadline}</h1>
           </motion.div>
-          <motion.p
+          <motion.h2
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={2}
-            className="text-lg md:text-xl text-white font-medium mb-3 drop-shadow-md"
+            custom={1}
+            className="font-display text-2xl sm:text-3xl md:text-4xl text-white mb-4 leading-tight drop-shadow-md"
           >
             {trainerConfig.heroSubheadline}
-          </motion.p>
+          </motion.h2>
           {"heroDescription" in trainerConfig && trainerConfig.heroDescription && (
             <motion.p
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              custom={3}
+              custom={2}
               className="text-base md:text-lg text-white/90 mb-8 leading-relaxed drop-shadow-md"
             >
               {trainerConfig.heroDescription}
@@ -104,18 +97,31 @@ export function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={4}
+            custom={3}
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4"
           >
             <Link
-              href="/#planes"
+              href="/#planificacion"
               onClick={() =>
-                trackEvent("cta_click", { location: "hero", target: "planes" })
+                trackEvent("cta_click", { location: "hero", target: "planificacion" })
               }
-              className="inline-flex items-center justify-center w-full sm:w-auto px-10 py-4 bg-[var(--primary)] text-white font-display font-bold text-lg uppercase rounded-lg hover:opacity-90 transition-opacity shadow-lg"
-              aria-label="Quiero empezar - ver planes"
+              className="inline-flex items-center justify-center px-8 py-4 bg-[var(--primary)] text-white font-display font-bold text-base sm:text-lg uppercase rounded-lg hover:opacity-90 transition-opacity shadow-lg"
+              aria-label="Quiero mi rutina - ver planes"
             >
-              Quiero empezar
+              Quiero mi rutina
             </Link>
+            <a
+              href={scheduleHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() =>
+                trackEvent("whatsapp_click", { location: "hero", action: "schedule_call" })
+              }
+              className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-display font-bold text-base sm:text-lg uppercase rounded-lg hover:bg-white hover:text-[var(--secondary)] transition-colors"
+              aria-label="Agendar llamada por WhatsApp"
+            >
+              Agendar llamada
+            </a>
           </motion.div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+import { assetUrl } from "@/lib/assetUrl";
 
 interface Transformation {
   _id: string;
@@ -28,9 +29,9 @@ export function Transformations({ transformations }: TransformationsProps) {
   const slides = transformations.flatMap((t) => {
     const imgs: { src: string; alt: string }[] = [];
     if (t.beforePhoto)
-      imgs.push({ src: t.beforePhoto, alt: `Antes - ${t.clientName || "Cliente"}` });
+      imgs.push({ src: assetUrl(t.beforePhoto), alt: `Antes - ${t.clientName || "Cliente"}` });
     if (t.afterPhoto)
-      imgs.push({ src: t.afterPhoto, alt: `Después - ${t.clientName || "Cliente"}` });
+      imgs.push({ src: assetUrl(t.afterPhoto), alt: `Después - ${t.clientName || "Cliente"}` });
     return imgs;
   });
 
@@ -81,14 +82,15 @@ export function Transformations({ transformations }: TransformationsProps) {
             >
               <div className="grid grid-cols-2 gap-0">
                 {t.beforePhoto && (
-                  <div className="relative aspect-square bg-slate-100">
+                  <div className="relative aspect-[3/4] bg-[var(--secondary)]">
                     <Image
-                      src={t.beforePhoto}
+                      src={assetUrl(t.beforePhoto)}
                       alt={`Antes - ${t.clientName || "Cliente"}`}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                       sizes="(max-width: 768px) 50vw, 20vw"
                       quality={85}
+                      unoptimized={!t.beforePhoto.startsWith("http")}
                     />
                     <span className="absolute bottom-2 left-2 text-xs bg-[var(--secondary)]/80 text-white px-2 py-1 rounded">
                       Antes
@@ -96,14 +98,15 @@ export function Transformations({ transformations }: TransformationsProps) {
                   </div>
                 )}
                 {t.afterPhoto && (
-                  <div className="relative aspect-square bg-slate-100">
+                  <div className="relative aspect-[3/4] bg-[var(--secondary)]">
                     <Image
-                      src={t.afterPhoto}
+                      src={assetUrl(t.afterPhoto)}
                       alt={`Después - ${t.clientName || "Cliente"}`}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                       sizes="(max-width: 768px) 50vw, 20vw"
                       quality={85}
+                      unoptimized={!t.afterPhoto.startsWith("http")}
                     />
                     <span className="absolute bottom-2 left-2 text-xs bg-[var(--primary)] text-white px-2 py-1 rounded">
                       Después

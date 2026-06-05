@@ -22,7 +22,7 @@ export function Presencial() {
           viewport={{ once: true }}
           className="font-display text-3xl md:text-5xl mb-6"
         >
-          ¿Buscás entrenamiento presencial?
+          Entrenamiento presencial
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -32,8 +32,7 @@ export function Presencial() {
           className="text-[var(--color-muted)] text-base md:text-lg leading-relaxed mb-10"
         >
           También trabajo de forma presencial en Mendoza para quienes buscan
-          acompañamiento cara a cara y una planificación completamente
-          personalizada.
+          acompañamiento directo en cada entrenamiento.
         </motion.p>
         <motion.a
           href={href}

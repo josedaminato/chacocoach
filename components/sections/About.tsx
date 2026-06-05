@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import { assetUrl } from "@/lib/assetUrl";
+import { ABOUT_TITLE } from "@/lib/landing";
 
 interface Trainer {
   name?: string;
@@ -38,7 +39,7 @@ export function About({ trainer }: AboutProps) {
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative aspect-[4/5] max-w-md mx-auto md:max-w-none rounded-2xl overflow-hidden ring-2 ring-[var(--primary)]/30"
+            className="relative w-full aspect-[997/1577] max-w-md mx-auto md:max-w-none rounded-2xl overflow-hidden ring-2 ring-[var(--primary)]/30 bg-[var(--secondary)]"
           >
             {trainer.photo ? (
               <Image
@@ -46,7 +47,7 @@ export function About({ trainer }: AboutProps) {
                 unoptimized={!trainer.photo.startsWith("http")}
                 alt={trainer.name ? `Foto de ${trainer.name}` : "Entrenador"}
                 fill
-                className="object-cover"
+                className="object-contain"
                 sizes="(max-width: 768px) 90vw, 50vw"
               />
             ) : (
@@ -61,27 +62,17 @@ export function About({ trainer }: AboutProps) {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="font-display text-3xl md:text-5xl mb-2"
+              className="font-display text-3xl md:text-5xl mb-6 leading-tight"
             >
-              Sobre mí
+              {ABOUT_TITLE}
             </motion.h2>
-            {trainer.title && (
-              <motion.p
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-[var(--primary)] font-medium mb-6"
-              >
-                {trainer.title}
-              </motion.p>
-            )}
             {Array.isArray(trainer.bio) ? (
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.08 }}
-                className="prose prose-invert max-w-none mb-8 [&_p]:text-white/90 [&_p]:leading-relaxed [&_p]:text-base md:[&_p]:text-lg"
+                className="prose prose-invert max-w-none mb-8 space-y-4 [&_p]:text-white/90 [&_p]:leading-relaxed [&_p]:text-base md:[&_p]:text-lg [&_p]:mb-4"
               >
                 <PortableText value={trainer.bio} />
               </motion.div>

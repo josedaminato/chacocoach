@@ -10,14 +10,6 @@ interface PlansProps {
   plans: Plan[];
 }
 
-function planWhatsAppMessage(plan: Plan): string {
-  const key = plan.whatsappKey;
-  if (key && key in WHATSAPP_MESSAGES) {
-    return WHATSAPP_MESSAGES[key as keyof typeof WHATSAPP_MESSAGES];
-  }
-  return WHATSAPP_MESSAGES.general;
-}
-
 export function Plans({ plans }: PlansProps) {
   const activePlans = plans?.filter((p) => p.isActive !== false) ?? [];
   if (activePlans.length === 0) return null;
@@ -104,7 +96,7 @@ export function Plans({ plans }: PlansProps) {
                 </ul>
               )}
               <a
-                href={getWhatsAppHref(planWhatsAppMessage(plan))}
+                href={getWhatsAppHref(WHATSAPP_MESSAGES.planification)}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() =>

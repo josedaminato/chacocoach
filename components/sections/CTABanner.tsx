@@ -8,7 +8,7 @@ import { WHATSAPP_MESSAGES } from "@/lib/landing";
 import { trackEvent } from "@/lib/analytics";
 
 export function CTABanner() {
-  const whatsappHref = getWhatsAppHref(WHATSAPP_MESSAGES.general);
+  const scheduleHref = getWhatsAppHref(WHATSAPP_MESSAGES.transformProgram);
 
   return (
     <section
@@ -43,20 +43,24 @@ export function CTABanner() {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Link
-            href="/#planes"
-            onClick={() => trackEvent("cta_click", { location: "cta_final", target: "planes" })}
+            href="/#planificacion"
+            onClick={() =>
+              trackEvent("cta_click", { location: "cta_final", target: "planificacion" })
+            }
             className="inline-flex items-center justify-center px-10 py-4 bg-white text-[var(--secondary)] font-display font-bold text-lg uppercase rounded-lg hover:opacity-95 transition-opacity"
           >
-            Ver planes
+            Quiero mi rutina
           </Link>
           <a
-            href={whatsappHref}
+            href={scheduleHref}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackEvent("whatsapp_click", { location: "cta_final" })}
+            onClick={() =>
+              trackEvent("whatsapp_click", { location: "cta_final", action: "schedule_call" })
+            }
             className="inline-flex items-center justify-center px-10 py-4 border-2 border-white text-white font-display font-bold text-lg uppercase rounded-lg hover:bg-white hover:text-[var(--secondary)] transition-colors"
           >
-            WhatsApp
+            Agendar llamada
           </a>
         </motion.div>
       </div>

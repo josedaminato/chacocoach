@@ -13,8 +13,9 @@ import { BrandLogo } from "@/components/layout/BrandLogo";
 const navLinks = [
   { href: "/#presentacion", label: "Presentación" },
   { href: "/#about", label: "Sobre mí" },
-  { href: "/#como-funciona", label: "Cómo funciona" },
-  { href: "/#planes", label: "Planes" },
+  { href: "/#como-trabajo", label: "Cómo trabajo" },
+  { href: "/#planificacion", label: "Planificación" },
+  { href: "/#programa", label: "Programa" },
   { href: "/#transformaciones", label: "Resultados" },
 ];
 

@@ -7,7 +7,7 @@ export const defaultConfig = {
   name: "Chaco Coach",
   tagline: "Entrenamiento online personalizado",
   bio: "Entrenador especializado en hipertrofia, recomposición corporal y preparación física.",
-  email: "contacto@chacocoach.com",
+  email: "Agustinchapa27@gmail.com",
   phone: "+5492614000000",
   country: "Argentina",
 
@@ -26,19 +26,19 @@ export const defaultConfig = {
 
   heroHeadline: "CHACO COACH",
   heroSubheadline:
-    "Entrenamiento online personalizado para lograr resultados reales.",
+    "Transformá tu cuerpo con un plan de entrenamiento diseñado para vos.",
   heroDescription:
-    "Planes de entrenamiento adaptados a tu objetivo, experiencia y disponibilidad. Seguimiento profesional y acompañamiento constante.",
+    "Entrenamiento online personalizado para ganar músculo, perder grasa y construir hábitos sostenibles, sin importar tu nivel actual.",
   /** Foto principal del home (public/hero.jpg) */
   heroMedia: "/hero.jpg",
 
   presentationVideoUrl: "" as string,
   presentationVideoCaption:
-    "Mi objetivo es ayudarte a construir un físico fuerte, saludable y sostenible, con una planificación adaptada a tu realidad y a tus objetivos.",
+    "No creo en soluciones rápidas. Mi trabajo es ayudarte a construir resultados reales mediante entrenamiento inteligente, seguimiento y hábitos sostenibles.",
 
-  ctaHeadline: "¿Listo para empezar?",
+  ctaHeadline: "Tu cambio empieza hoy",
   ctaSubheadline:
-    "Elegí tu plan online o escribime por WhatsApp para recibir más información.",
+    "Elegí una planificación personalizada o agendá una llamada para conocer si el programa Entrená con Chaco es para vos.",
 
   theme: {
     primary: "#0EA5E9",
