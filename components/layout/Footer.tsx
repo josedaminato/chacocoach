@@ -5,7 +5,21 @@ import { getMailtoHref } from "@/lib/email";
 import { WHATSAPP_MESSAGES } from "@/lib/landing";
 import { BrandLogo } from "@/components/layout/BrandLogo";
 
-const contactLinks = [
+import Link from "next/link";
+import { trainerConfig } from "@/lib/getConfig";
+import { getWhatsAppHref } from "@/lib/whatsapp";
+import { getMailtoHref } from "@/lib/email";
+import { WHATSAPP_MESSAGES } from "@/lib/landing";
+import { BrandLogo } from "@/components/layout/BrandLogo";
+
+type ContactItem = {
+  key: string;
+  href: string;
+  label: string;
+  external?: boolean;
+};
+
+const contactLinks: ContactItem[] = [
   {
     key: "instagram",
     href: trainerConfig.instagram,
@@ -27,6 +41,10 @@ const contactLinks = [
 ].filter((item) => item.href && item.href !== "#");
 
 export function Footer() {
+  const instagram = contactLinks.find((item) => item.key === "instagram");
+  const whatsapp = contactLinks.find((item) => item.key === "whatsapp");
+  const email = contactLinks.find((item) => item.key === "email");
+
   return (
     <footer className="bg-[var(--secondary)] text-white py-10 md:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,32 +56,45 @@ export function Footer() {
           >
             <BrandLogo height={56} className="rounded-md" />
           </Link>
+
           <nav
             aria-label="Redes y contacto"
-            className="flex flex-wrap justify-center gap-8 md:gap-12"
+            className="grid w-full max-w-md grid-cols-[1fr_auto_1fr] items-start gap-x-3 sm:gap-x-6 md:gap-x-10"
           >
-            {contactLinks.map((item) => (
-              <a
-                key={item.key}
-                href={item.href}
-                {...(item.external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-                className="flex flex-col items-center gap-2 text-white/80 hover:text-[var(--primary)] transition-colors group"
-              >
-                <ContactIcon name={item.key} />
-                <span className="text-sm font-medium group-hover:text-[var(--primary)]">
-                  {item.label}
-                </span>
-              </a>
-            ))}
+            <div className="flex justify-end">
+              {instagram ? <ContactLink item={instagram} /> : null}
+            </div>
+            <div className="flex justify-center">
+              {whatsapp ? <ContactLink item={whatsapp} /> : null}
+            </div>
+            <div className="flex justify-start">
+              {email ? <ContactLink item={email} /> : null}
+            </div>
           </nav>
+
           <p className="text-white/50 text-sm">
             Copyright {trainerConfig.name}
           </p>
         </div>
       </div>
     </footer>
+  );
+}
+
+function ContactLink({ item }: { item: ContactItem }) {
+  return (
+    <a
+      href={item.href}
+      {...(item.external
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {})}
+      className="flex w-[5.5rem] sm:w-28 flex-col items-center gap-2 text-white/80 hover:text-[var(--primary)] transition-colors group"
+    >
+      <ContactIcon name={item.key} />
+      <span className="text-xs sm:text-sm font-medium leading-tight text-center group-hover:text-[var(--primary)]">
+        {item.label}
+      </span>
+    </a>
   );
 }
 
