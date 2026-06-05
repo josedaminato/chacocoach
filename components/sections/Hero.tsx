@@ -68,10 +68,10 @@ export function Hero() {
           >
             <BrandLogo
               src={trainerConfig.heroLogo}
-              height={120}
-              width={120}
+              height={130}
+              width={240}
               priority
-              className="w-auto max-w-[140px] sm:max-w-[160px] drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]"
+              className="w-auto max-w-[200px] sm:max-w-[240px] drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]"
             />
             <h1 className="sr-only">{trainerConfig.heroHeadline}</h1>
           </motion.div>
