@@ -37,7 +37,7 @@ export function Hero() {
               src={mediaSrc}
               alt="Entrenamiento de fuerza en gimnasio"
               fill
-              className="object-cover object-[center_22%] sm:object-[center_28%] md:object-[72%_center] lg:object-[68%_center]"
+              className="object-cover object-[center_35%] sm:object-center md:object-[55%_center]"
               priority
               sizes="100vw"
               unoptimized
@@ -45,11 +45,11 @@ export function Hero() {
             />
           ) : null}
           <div
-            className="absolute inset-0 bg-gradient-to-r from-[var(--secondary)] from-0% via-[var(--secondary)]/88 via-45% to-[var(--secondary)]/15 to-100% md:via-[var(--secondary)]/72 md:via-38% md:to-transparent"
+            className="absolute inset-0 bg-gradient-to-r from-[var(--secondary)]/95 from-0% via-[var(--secondary)]/55 via-42% to-transparent to-100% md:via-[var(--secondary)]/45 md:via-35%"
             aria-hidden
           />
           <div
-            className="absolute inset-0 bg-gradient-to-t from-[var(--secondary)] via-[var(--secondary)]/40 to-transparent md:from-[var(--secondary)]/80 md:via-transparent"
+            className="absolute inset-0 bg-gradient-to-t from-[var(--secondary)]/90 via-[var(--secondary)]/25 to-transparent md:from-[var(--secondary)]/50 md:via-transparent"
             aria-hidden
           />
         </div>
