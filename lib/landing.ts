@@ -2,6 +2,16 @@ export const ABOUT_TITLE = "¿Quién está detrás de Chaco Coach?";
 
 export const HOW_IT_WORKS_TITLE = "Un proceso simple y personalizado";
 
+/** Anclas del menú → secciones de la home */
+export const NAV_LINKS = [
+  { label: "Presentación", sectionId: "presentacion" },
+  { label: "Sobre mí", sectionId: "about" },
+  { label: "Cómo trabajo", sectionId: "como-trabajo" },
+  { label: "Planificación", sectionId: "planificacion" },
+  { label: "Programa", sectionId: "programa" },
+  { label: "Resultados", sectionId: "transformaciones" },
+] as const;
+
 export const MONTHLY_PLANNING = {
   id: "planificacion",
   title: "Planificación personalizada mensual",

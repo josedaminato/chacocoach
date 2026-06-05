@@ -6,6 +6,10 @@ html {
   scroll-behavior: smooth;
 }
 
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #0f172a;

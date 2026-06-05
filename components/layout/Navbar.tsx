@@ -6,18 +6,25 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { trainerConfig } from "@/lib/getConfig";
 import { getWhatsAppHref } from "@/lib/whatsapp";
-import { WHATSAPP_MESSAGES } from "@/lib/landing";
+import { WHATSAPP_MESSAGES, NAV_LINKS } from "@/lib/landing";
 import { trackEvent } from "@/lib/analytics";
 import { BrandLogo } from "@/components/layout/BrandLogo";
 
-const navLinks = [
-  { href: "/#presentacion", label: "Presentación" },
-  { href: "/#about", label: "Sobre mí" },
-  { href: "/#como-trabajo", label: "Cómo trabajo" },
-  { href: "/#planificacion", label: "Planificación" },
-  { href: "/#programa", label: "Programa" },
-  { href: "/#transformaciones", label: "Resultados" },
-];
+const NAV_OFFSET = 88;
+
+function scrollToSection(sectionId: string) {
+  const el = document.getElementById(sectionId);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
+  window.scrollTo({ top, behavior: "smooth" });
+  window.history.replaceState(null, "", `#${sectionId}`);
+}
+
+const navLinks = NAV_LINKS.map(({ label, sectionId }) => ({
+  label,
+  sectionId,
+  href: `/#${sectionId}`,
+}));
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -27,6 +34,25 @@ export function Navbar() {
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (pathname !== "/") return;
+    const hash = window.location.hash.replace("#", "");
+    if (!hash) return;
+    const timer = window.setTimeout(() => scrollToSection(hash), 150);
+    return () => window.clearTimeout(timer);
+  }, [pathname]);
+
+  function handleSectionClick(
+    e: React.MouseEvent<HTMLAnchorElement>,
+    sectionId: string,
+    onDone?: () => void
+  ) {
+    if (pathname !== "/") return;
+    e.preventDefault();
+    scrollToSection(sectionId);
+    onDone?.();
+  }
 
   return (
     <nav
@@ -46,9 +72,10 @@ export function Navbar() {
           </Link>
           <ul className="hidden md:flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => (
-              <li key={link.href}>
+              <li key={link.sectionId}>
                 <Link
                   href={link.href}
+                  onClick={(e) => handleSectionClick(e, link.sectionId)}
                   className="text-sm uppercase tracking-wider text-white/80 hover:text-[var(--primary)] transition-colors"
                 >
                   {link.label}
@@ -110,10 +137,12 @@ export function Navbar() {
           >
             <ul className="flex flex-col p-4 gap-3">
               {navLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.sectionId}>
                   <Link
                     href={link.href}
-                    onClick={() => setOpen(false)}
+                    onClick={(e) =>
+                      handleSectionClick(e, link.sectionId, () => setOpen(false))
+                    }
                     className="block py-2 text-white/90 hover:text-[var(--primary)] transition-colors"
                   >
                     {link.label}
