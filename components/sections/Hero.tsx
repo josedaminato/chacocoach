@@ -71,7 +71,7 @@ export function Hero() {
               height={120}
               width={120}
               priority
-              className="w-auto max-w-[140px] sm:max-w-[160px] drop-shadow-lg"
+              className="w-auto max-w-[140px] sm:max-w-[160px] drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]"
             />
             <h1 className="sr-only">{trainerConfig.heroHeadline}</h1>
           </motion.div>
