@@ -32,7 +32,7 @@ export const defaultConfig = {
   /** Foto principal del home (public/hero.jpg) */
   heroMedia: "/hero.jpg",
 
-  presentationVideoUrl: "" as string,
+  presentationVideoUrl: "/presentacion.mp4",
   presentationVideoCaption:
     "No creo en soluciones rápidas. Mi trabajo es ayudarte a construir resultados reales mediante entrenamiento inteligente, seguimiento y hábitos sostenibles.",
 

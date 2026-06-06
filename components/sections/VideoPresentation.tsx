@@ -6,6 +6,10 @@ import { assetUrl } from "@/lib/assetUrl";
 
 export function VideoPresentation() {
   const videoUrl = trainerConfig.presentationVideoUrl;
+  const resolvedVideoUrl =
+    videoUrl && !videoUrl.includes("youtube.com") && !videoUrl.includes("youtu.be")
+      ? assetUrl(videoUrl)
+      : videoUrl;
 
   return (
     <section
@@ -42,10 +46,11 @@ export function VideoPresentation() {
               />
             ) : (
               <video
-                src={videoUrl}
+                src={resolvedVideoUrl}
                 controls
                 playsInline
-                className="w-full h-full object-cover"
+                preload="metadata"
+                className="w-full h-full object-contain bg-black"
                 poster={assetUrl(trainerConfig.heroMedia)}
               >
                 <track kind="captions" />
