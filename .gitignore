@@ -12,6 +12,7 @@
 # next.js
 /.next/
 /out/
+/hostinger-upload/
 
 # production
 /build

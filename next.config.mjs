@@ -1,14 +1,18 @@
 /** @type {import('next').NextConfig} */
 const isGhPages = process.env.GH_PAGES_BUILD === "1";
+const isHostinger = process.env.HOSTINGER_BUILD === "1";
+const isStaticExport = isGhPages || isHostinger;
 
 const nextConfig = {
-  ...(isGhPages && {
+  ...(isStaticExport && {
     output: "export",
-    basePath: "/chacocoach",
-    assetPrefix: "https://josedaminato.github.io/chacocoach",
+    ...(isGhPages && {
+      basePath: "/chacocoach",
+      assetPrefix: "https://josedaminato.github.io/chacocoach",
+    }),
   }),
   images: {
-    ...(isGhPages && { unoptimized: true }),
+    ...(isStaticExport && { unoptimized: true }),
     remotePatterns: [
       {
         protocol: "https",

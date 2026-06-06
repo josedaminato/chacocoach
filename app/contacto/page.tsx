@@ -7,6 +7,9 @@ import { z } from "zod";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { trainerConfig } from "@/lib/getConfig";
+import { getMailtoHref } from "@/lib/email";
+import { getWhatsAppHref } from "@/lib/whatsapp";
+import { isStaticExport } from "@/lib/isStaticExport";
 import { trackEvent } from "@/lib/analytics";
 
 const schema = z.object({
@@ -33,6 +36,26 @@ export default function ContactoPage() {
   });
 
   const onSubmit = async (data: FormData) => {
+    if (isStaticExport) {
+      const body = [
+        `Nombre: ${data.name}`,
+        `Email: ${data.email}`,
+        data.phone ? `Teléfono: ${data.phone}` : null,
+        data.fitnessGoal ? `Objetivo: ${data.fitnessGoal}` : null,
+        "",
+        data.message,
+      ]
+        .filter(Boolean)
+        .join("\n");
+
+      trackEvent("contact_form_submitted", { channel: "mailto" });
+      window.location.href = getMailtoHref({
+        subject: `Consulta de ${data.name} - Chaco Coach`,
+        body,
+      });
+      return;
+    }
+
     setStatus("loading");
     try {
       const res = await fetch("/api/contact", {
@@ -188,6 +211,8 @@ export default function ContactoPage() {
                   />
                   Enviando...
                 </>
+              ) : isStaticExport ? (
+                "Enviar por correo"
               ) : (
                 "Enviar mensaje"
               )}
@@ -197,16 +222,26 @@ export default function ContactoPage() {
             <p className="text-[var(--secondary)]/70">
               O contactame directamente:
             </p>
-            {trainerConfig.whatsapp && (
-              <a
-                href={trainerConfig.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-              >
-                WhatsApp
-              </a>
-            )}
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              {trainerConfig.whatsapp && (
+                <a
+                  href={getWhatsAppHref()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex justify-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+                >
+                  WhatsApp
+                </a>
+              )}
+              {trainerConfig.email && (
+                <a
+                  href={getMailtoHref()}
+                  className="inline-flex justify-center px-6 py-3 border-2 border-[var(--secondary)]/20 text-[var(--secondary)] rounded-lg hover:border-[var(--primary)] transition-colors font-medium"
+                >
+                  Correo electrónico
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </section>

@@ -28,6 +28,7 @@ const siteUrl =
   trainerConfig.siteUrl;
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const ogImage = process.env.NEXT_PUBLIC_STATIC_EXPORT === "1" ? "/hero.jpg" : "/og";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
     siteName: trainerConfig.name,
     title: `${trainerConfig.name} | ${trainerConfig.tagline}`,
     description: trainerConfig.heroSubheadline,
-    images: [{ url: "/og", width: 1200, height: 630 }],
+    images: [{ url: ogImage, width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

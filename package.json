@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:gh": "cross-env GH_PAGES_BUILD=1 NEXT_PUBLIC_SITE_URL=https://josedaminato.github.io/chacocoach NEXT_PUBLIC_BASE_PATH=/chacocoach next build",
+    "build:gh": "cross-env GH_PAGES_BUILD=1 NEXT_PUBLIC_STATIC_EXPORT=1 NEXT_PUBLIC_SITE_URL=https://josedaminato.github.io/chacocoach NEXT_PUBLIC_BASE_PATH=/chacocoach next build",
+    "build:hostinger": "cross-env HOSTINGER_BUILD=1 NEXT_PUBLIC_STATIC_EXPORT=1 next build",
+    "prepare:hostinger": "node scripts/prepare-hostinger.mjs",
     "deploy": "npm run build:gh && gh-pages -d out --nojekyll",
     "start": "next start",
     "lint": "next lint",
