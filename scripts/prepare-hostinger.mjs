@@ -36,7 +36,22 @@ if (existsSync(uploadDir)) {
 }
 cpSync(outDir, uploadDir, { recursive: true });
 
+const zipPath = join(root, "chacocoach-site.zip");
+if (existsSync(zipPath)) rmSync(zipPath);
+
 console.log("\n✓ Carpeta lista para subir:");
 console.log(`  ${uploadDir}`);
-console.log("\nSubí TODO el contenido de esa carpeta a public_html en Hostinger.");
-console.log("(Administrador de archivos → public_html, o FileZilla por FTP)\n");
+console.log("\nOpción A — ZIP (más fácil en hPanel):");
+console.log("  1. Subí chacocoach-site.zip a public_html");
+console.log("  2. Click derecho → Extract");
+console.log("  3. Mové el contenido a public_html (no la carpeta hostinger-upload)");
+console.log("\nOpción B — FTP automático:");
+console.log("  Configurá HOSTINGER_FTP_* y ejecutá: npm run deploy:hostinger");
+console.log("\nGenerando ZIP...");
+
+execSync(
+  `powershell -NoProfile -Command "Compress-Archive -Path '${uploadDir.replace(/'/g, "''")}\\*' -DestinationPath '${zipPath.replace(/'/g, "''")}' -Force"`,
+  { cwd: root, stdio: "inherit" }
+);
+
+console.log(`\n✓ ZIP creado: ${zipPath}\n`);

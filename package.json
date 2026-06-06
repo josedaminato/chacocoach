@@ -8,6 +8,7 @@
     "build:gh": "cross-env GH_PAGES_BUILD=1 NEXT_PUBLIC_STATIC_EXPORT=1 NEXT_PUBLIC_SITE_URL=https://josedaminato.github.io/chacocoach NEXT_PUBLIC_BASE_PATH=/chacocoach next build",
     "build:hostinger": "cross-env HOSTINGER_BUILD=1 NEXT_PUBLIC_STATIC_EXPORT=1 next build",
     "prepare:hostinger": "node scripts/prepare-hostinger.mjs",
+    "deploy:hostinger": "node scripts/prepare-hostinger.mjs && node scripts/deploy-hostinger-ftp.mjs",
     "deploy": "npm run build:gh && gh-pages -d out --nojekyll",
     "start": "next start",
     "lint": "next lint",
@@ -35,13 +36,14 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
-    "gh-pages": "^6.1.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "basic-ftp": "^5.3.1",
+    "cross-env": "^7.0.3",
     "eslint": "^8",
     "eslint-config-next": "14.2.35",
+    "gh-pages": "^6.1.1",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
